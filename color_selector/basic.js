@@ -27,3 +27,21 @@
 // console.log("Color of Red", HexToRGB("#f80ea3").r);
 
 //----------------------------- RBGtoHex ------------------------------------------------
+
+//breaks when only adding two digits
+
+function rgbToHex(rgb) {
+  const rHex = Number(rgb.r).toString(16);
+  const gHex = Number(rgb.g).toString(16);
+  const bHex = Number(rgb.b).toString(16);
+
+  // console.log(`${rHex} ${gHex} ${bHex}`);
+
+  return {
+    rHex,
+    gHex,
+    bHex,
+  };
+}
+
+console.log(rgbToHex({ r: 9, g: 0, b: 37 }));
