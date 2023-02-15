@@ -49,8 +49,12 @@ function fullName(lastName, firstName, middleName) {
     middleName = middleName + " ";
   }
 
-  console.log(firstName + " " + middleName + lastName);
+  return firstName + " " + middleName + lastName;
 }
+
+let result = fullName("Potter", "Harry", "James");
+
+console.log(result);
 
 fullName("Potter", "Harry", "James");
 fullName("Potter", "Harry");

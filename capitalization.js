@@ -5,8 +5,9 @@ let theName = "petER";
 // console.log(theName);
 
 function capitalization(str) {
-  str = str[0].toUpperCase() + str.substring(1).toLowerCase();
-  console.log(str);
+  return str[0].toUpperCase() + str.substring(1).toLowerCase();
 }
 
-capitalization(theName);
+let result = capitalization(theName);
+
+console.log(result);

@@ -22,7 +22,7 @@ function greeting(honeyBadger) {
 
 // greeting("any name");
 
-// console.log(greeting("any name"));
+console.log(greeting("any name"));
 
 // resultatet er: Hello undefined
 // console.log(greeting());
