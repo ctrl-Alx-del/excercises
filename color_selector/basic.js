@@ -26,10 +26,4 @@
 // console.log("Color as RGB", HexToRGB("#f80ea3"));
 // console.log("Color of Red", HexToRGB("#f80ea3").r);
 
-// function createPerson(firstName, lastName, age, isGinger) {
-//   return { firstName, lastName, age, isGinger };
-// }
-
-// let newPerson = createPerson("Alexander", "Teodorescu-Romanati", 30, false);
-
-// console.log("Person's details", newPerson);
+//----------------------------- RBGtoHex ------------------------------------------------
