@@ -7,9 +7,8 @@ const animals = [
   { name: "ScoobyDoo", type: "dog" },
 ];
 
-function isCat(animal) {
-  console.log(animal.name);
-  if (animal.type === "cat") {
+function isCatorDog(animal) {
+  if (animal.type === "cat" || animal.type === "dog") {
     return true;
   } else {
     return false;
@@ -28,4 +27,4 @@ function none() {
 
 // console.log("ALL", animals.filter(all));
 // console.log("NONE", animals.filter(none));
-console.log("ONLY CATS", animals.filter(isCat));
+console.log("ONLY CATS", animals.filter(isCatorDog));
