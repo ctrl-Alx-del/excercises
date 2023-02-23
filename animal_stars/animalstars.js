@@ -17,6 +17,7 @@ const Animal = {
   type: "",
   age: 0,
   star: "☆",
+  isStar: false,
   // TODO: Add star
 };
 
@@ -75,7 +76,14 @@ function displayAnimal(animal) {
   // set clone data
 
   // TODO: Show star ⭐ or ☆
-  clone.querySelector("[data-field=star]").textContent = animal.star;
+  let starToShow;
+  // if (animal.isStar) {
+  //   starToShow = "⭐";
+  // } else {
+  //   starToShow = "☆";
+  // }
+  starToShow = animal.isStar ? "⭐" : "☆";
+  clone.querySelector("[data-field=star]").textContent = starToShow;
   clone.querySelector("[data-field=name]").textContent = animal.name;
   clone.querySelector("[data-field=desc]").textContent = animal.desc;
   clone.querySelector("[data-field=type]").textContent = animal.type;
@@ -83,16 +91,18 @@ function displayAnimal(animal) {
 
   // TODO: Add event listener to click on star
   clone.querySelector("[data-field=star]").addEventListener("click", starClicked);
-
   function starClicked() {
-    if (animal.star === "☆") {
-      animal.star = "⭐";
-      buildList();
-    } else if (animal.star === "⭐") {
-      animal.star = "☆";
-      buildList();
-    }
+    animal.isStar = !animal.isStar;
+    buildList();
   }
+  // function starClicked() {
+  //   if (animal.star === "☆") {
+  //     animal.star = "⭐";
+  //   } else if (animal.star === "⭐") {
+  //     animal.star = "☆";
+  //   }
+  //   buildList();
+  // }
 
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
