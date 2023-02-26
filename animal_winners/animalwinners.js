@@ -2,8 +2,6 @@
 
 window.addEventListener("DOMContentLoaded", start);
 
-let isClicked = false;
-
 let allAnimals = [];
 
 const settings = {
@@ -19,6 +17,7 @@ const Animal = {
   type: "",
   age: 0,
   // TODO: Add winner-info
+  isWinner: false,
 };
 
 function start() {
@@ -75,6 +74,8 @@ function displayAnimal(animal) {
   // set clone data
 
   // TODO: Display winner
+  let trophyToShow;
+  trophyToShow = animal.isWinner ? "🏆" : "🏆";
 
   // TODO: Display star
 
@@ -82,31 +83,40 @@ function displayAnimal(animal) {
   clone.querySelector("[data-field=desc]").textContent = animal.desc;
   clone.querySelector("[data-field=type]").textContent = animal.type;
   clone.querySelector("[data-field=age]").textContent = animal.age;
+  clone.querySelector("[data-field=winner]").textContent = trophyToShow;
+
+  // TODO: Add event listeners for star and winner
+  clone.querySelector("[data-field=winner]").addEventListener("click", trophyClicked);
+
+  function trophyClicked(event) {
+    let animalWinners = allAnimals.filter((animal) => animal.isWinner === true);
+    let winnerCount = animalWinners.length;
+
+    //Samme function som arrow function på linje 101
+    // function isAnimal(element) {
+    //   //element er det dyr i listen og animal er den man klikker på
+    //   return element.type === animal.type;
+    // }
+
+    const isSameAnimalType = (element) => element.type === animal.type;
+
+    let oneType = animalWinners.some(isSameAnimalType);
+
+    if (winnerCount < 2 && !oneType) {
+      animal.isWinner = !animal.isWinner;
+    } else {
+      animal.isWinner = false;
+    }
+
+    if (animal.isWinner === true) {
+      event.target.setAttribute("data-winner", "true");
+    } else {
+      event.target.setAttribute("data-winner", "false");
+    }
+  }
 
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
-
-  // TODO: Add event listeners for star and winner
-  const winnerSelect = document.querySelectorAll(".winner");
-  winnerSelect.forEach((winners) => {
-    winners.addEventListener("click", toggleWinner);
-    winners.addEventListener("click", winCondition);
-  });
-}
-
-function toggleWinner(event) {
-  if (isClicked === false) {
-    isClicked = true;
-  } else {
-    isClicked = false;
-  }
-
-  if (isClicked === true && winCondition() < 3) {
-    event.target.setAttribute("data-winner", "true");
-  } else {
-    event.target.setAttribute("data-winner", "false");
-  }
-  console.log("clicked");
 }
 
 /*
@@ -114,22 +124,3 @@ There are no other animals of the same type being a winner
 AND
 There are less than two winners in total
 */
-
-function winCondition() {
-  let amountOfWinners = 0;
-
-  //Boolean flag controls that it only counts once everytime isClicked is false
-  if (isClicked === false) {
-    isClicked = true;
-    amountOfWinners++;
-  } else {
-    isClicked = false;
-  }
-
-  if (amountOfWinners >= 2) {
-    amountOfWinners = 2;
-  }
-
-  console.log(amountOfWinners);
-  return amountOfWinners;
-}

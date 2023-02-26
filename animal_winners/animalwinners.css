@@ -49,6 +49,11 @@
   cursor: pointer;
 }
 
+[data-field="winner"][data-winner="true"] {
+  filter: grayscale(0%);
+  cursor: pointer;
+}
+
 /******** DIALOG styling **********/
 
 .dialog {
